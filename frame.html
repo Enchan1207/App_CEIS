@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/APP_CEIS/css/frame.css">
+    <link rel="stylesheet" href="/APP_CEIS/css/menu.css">
+    <link rel="stylesheet" href="/APP_CEIS/css/list.css">
+    <link rel="stylesheet" href="/APP_CEIS/css/user.css">
+
+    <title>CEISManager</title>
+</head>
+
+<body>
+    <!-- 画像オーバーレイ -->
+    <div id="overlay" data-status="hide">
+        <div id="control">
+            <div id="left" class="btn">&lt;</div>
+            <div id="right" class="btn">&gt;</div>
+        </div>
+        <div id="image">
+            <img src="/APP_CEIS/images/loading.gif">
+        </div>
+    </div>
+
+    <!-- navバー -->
+    <div id="navbar">
+        <div id="logo">
+            CEISManager
+        </div>
+    </div>
+
+    <!-- wrapper -->
+    <div id="wrapper">
+        <!-- 諸ボタン -->
+        <div id="navbtn" class="open"></div>
+
+        <!-- navペイン選択用input -->
+        <input type="radio" name="menu" id="photos" checked>
+        <input type="radio" name="menu" id="person">
+        <input type="radio" name="menu" id="settings">
+
+        <!-- navペイン -->
+        <div class="pane" id="menu">
+            <label class="menuCell" for="photos">
+                <img src="/APP_CEIS/images/photos.png" alt="">
+            </label>
+            <label class="menuCell" for="person">
+                <img src="/APP_CEIS/images/person.png" alt="">
+            </label>
+            <label class="menuCell" for="settings">
+                <img src="/APP_CEIS/images/settings.png" alt="">
+            </label>
+        </div>
+
+        <!-- 最新画像リストペイン -->
+        <div class="pane" id="list">
+            <!-- ズームボタン -->
+            <div id="scalebtn">
+                <div class="btn" id="up">+</div>
+                <div class="btn" id="down">-</div>
+            </div>
+            <!--
+            <span class="imgCell">
+                <img src="/kig/thumb_dummy.png" alt="">
+            </span>
+            -->
+        </div>
+
+        <!-- ユーザ別画像リストペイン -->
+        <div class="pane" id="user">
+            <!-- ズームボタン -->
+            <div id="scalebtn">
+                <div class="btn" id="up">+</div>
+                <div class="btn" id="down">-</div>
+            </div>
+            <!--
+            <span class="userCell">
+                <span class="thumbCell">
+                    <img src="/kig/thumb_dummy.png" alt="">
+                    <img src="/kig/thumb_dummy.png" alt="">
+                    <img src="/kig/thumb_dummy.png" alt="">
+                    <img src="/kig/thumb_dummy.png" alt="">
+                </span>
+                <span class="nameCell">はれ</span>
+                <span class="idCell">
+                    <a href="https://twitter.com/hare_kig" target="_blank">(@hare_kig)</a>
+                </span>
+                <span class="infoCell">302</span>
+            </span>
+            -->
+        </div>
+
+        <!-- 設定ペイン -->
+        <div id="config" class="pane">
+
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="/APP_CEIS/js/thumbnail.js"></script>
+    <script src="/APP_CEIS/js/overlay.js"></script>
+    <script src="/APP_CEIS/js/menu.js"></script>
+    <script src="/APP_CEIS/js/zoom.js"></script>
+    <script src="/APP_CEIS/js/script.js"></script>
+
+</body>
+
+</html>

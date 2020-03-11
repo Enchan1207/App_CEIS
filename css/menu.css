@@ -1,0 +1,81 @@
+/*
+ * メニューバーCSS 
+*/
+#menu{
+    display: flex;
+    flex-direction: column;
+    width:50px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    background-color: #444;
+    flex-shrink: 0;
+    transition: .2s all ease-in-out;
+}
+#menu .menuCell{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height:50px;
+    text-align: center;
+    cursor: pointer;
+    transition: .1s all ease-in-out;
+}
+.menuCell>*{
+    pointer-events: none;
+}
+.menuCell:hover{
+    background-color: #666;
+    filter: drop-shadow(2px 2px 1px rgba(150,150,150,0.3));
+}
+.menuCell img{
+    width:80%;
+    height:80%;
+    filter: grayscale(1);
+    object-fit: contain;
+    transition: .1s all ease-in-out;
+}
+#navbtn{
+    position: absolute;
+    height:50px;
+    top:60px;
+    left:50px;
+    color:#ccc;
+    background-color: #444;
+    padding: 1px;
+    box-sizing: border-box;
+    line-height: 50px;
+    border-radius: 0 5px 5px 0;
+    transition: .2s all ease-in-out;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+#navbtn:hover{
+    background-color: #666;
+    color:#222;
+}
+#navbtn.open:before{
+    content:'▶';
+}
+#navbtn.close:before{
+    content:'◀';
+}
+#navbtn.close ~ #menu{
+    width:0;
+}
+#navbtn.close{
+    left: 0;
+}
+
+input[name=menu]{
+    display: none;
+}
+
+#photos:checked ~ #menu label[for=photos] img ,
+#person:checked ~ #menu label[for=person] img ,
+#settings:checked ~ #menu label[for=settings] img {
+    filter:none !important;
+}

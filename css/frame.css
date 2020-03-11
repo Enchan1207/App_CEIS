@@ -1,0 +1,166 @@
+/*
+ * 雛形CSS
+*/
+
+/*-- 共通 --*/
+body{
+    width:100%;
+    height:100vh;
+
+    margin:0;
+    padding:0;
+
+}
+div{
+    margin:0;
+    padding: 0;
+}
+
+/*-- wrapper --*/
+#wrapper {
+    display: flex;
+    width: 100%;
+    height: calc(100% - 50px);
+    background-color: #ddd;
+}
+#wrapper .pane {
+    height: 100%;
+}
+
+/*-- navバー --*/
+#navbar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50px;
+
+    background-color: #444;
+    filter:drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.9));
+}
+#logo{
+    width: 40%;
+    height: 100%;
+    line-height: 50px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    color: #ccc;
+    font-family: Consolas;
+    font-style: italic;
+    font-size: 2em;
+}
+
+/*-- オーバーレイ --*/
+#overlay{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    transition: .1s opacity ease-in-out;
+    background-color: rgba(1,1,1,0.8);
+    z-index: 20;
+}
+#overlay[data-status=show]{
+    opacity: 1.0;
+    pointer-events: all;
+}
+#overlay[data-status=hide]{
+    opacity: 0;
+    pointer-events: none;
+}
+
+#overlay #image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 21;
+}
+#overlay #image img{
+    max-width:95%;
+    max-height:95%;
+}
+#overlay #control{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 22;
+    pointer-events: none;
+}
+#overlay #control .btn{
+    position: absolute;
+    top:0;
+    width:fit-content;
+    height:100%;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 100vh;
+    font-size: 3em;
+    color:#aaa;
+    background-color: #333;
+    pointer-events: all;
+    cursor: pointer;
+    opacity: 0.6;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    transition: .3s all ease-in-out;
+}
+#overlay #control .btn:hover{
+    background-color: #ccc;
+    color:#444;
+}
+
+#control .btn#left{
+    left:0;
+}
+#control .btn#right{
+    right:0;
+}
+#overlay[data-status=hide] > #control{
+    display: none;
+}
+
+/* pane内の画像セルがホバーされた時 */
+.pane .imgCell:hover,
+.pane .userCell:hover{
+    filter: drop-shadow(3px 3px 2px rgba(1,1,1,0.3));
+    cursor: pointer;
+}
+
+/*-- サムネイル --*/
+.thumbCell{
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.thumbCell>img,
+.thumbCell>span{
+    width:calc(50% - 4px);
+    height:calc(50% - 4px);
+    object-fit: contain;
+    margin: 2px;
+    pointer-events: none;
+    background-color: #bbb;
+    border-radius: 2px;
+}
+
+/*-- ペイン切り替え --*/
+#photos:checked ~ #list{
+    display: block !important;
+}
+#person:checked ~ #user{
+    display: block !important;
+}
+#settings:checked ~ #config{
+    display: block !important;
+}

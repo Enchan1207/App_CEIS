@@ -1,0 +1,56 @@
+/*
+ * ユーザ別画像リスト用CSS
+*/
+
+.userCell{
+    display: inline-flex;
+    flex-direction: column;
+    background-color: #ddd;
+    width: calc(var(--size) * 1px);
+    height: calc(var(--size) * 1.5px);
+    transition: .1s all ease-in-out;
+    margin:5px;
+    padding: 3px;
+}
+
+.nameCell{
+    text-overflow: ellipsis;
+    font-size: 1.1em;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.nameCell::before {
+    padding: 0 3px;
+    color: #fff;
+    width: 16px;
+    height: 16px;
+    margin: 0 5px;
+    font-size: 0.8em;
+    border-radius: 2px;
+    content: 'N';
+    background: #666;
+}
+.nameCell[data-type=untracked]::before {
+    content: 'U';
+    background: #0a0;
+}
+.nameCell[data-type=tracking]::before {
+    content: 'T';
+    background: #f84;
+}
+.nameCell[data-type=finished]::before {
+    content: 'F';
+    background: #08f;
+}
+
+.idCell{
+    font-size: 0.8em;
+}
+.idCell a{
+    color:#555;
+}
+.infoCell{
+    font-size: 0.9em;
+}
