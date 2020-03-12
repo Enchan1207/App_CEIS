@@ -24,6 +24,9 @@ div{
     background-color: #ddd;
 }
 #wrapper .pane {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
     height: 100%;
 }
 
@@ -131,7 +134,7 @@ div{
 /* pane内の画像セルがホバーされた時 */
 .pane .imgCell:hover,
 .pane .userCell:hover{
-    filter: drop-shadow(3px 3px 2px rgba(1,1,1,0.3));
+    filter: drop-shadow(2px 2px 2px rgba(50,50,50,0.2));
     cursor: pointer;
 }
 
@@ -155,12 +158,9 @@ div{
 }
 
 /*-- ペイン切り替え --*/
-#photos:checked ~ #list{
-    display: block !important;
-}
-#person:checked ~ #user{
-    display: block !important;
-}
-#settings:checked ~ #config{
-    display: block !important;
+#photos:checked ~ #list,
+#person:checked ~ #user,
+#settings:checked ~ #config,
+#userimg:checked ~ #userimages{
+    display: flex !important;
 }

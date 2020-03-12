@@ -81,15 +81,15 @@ function initOverlay() {
 
     //--コントロールボタンにイベントを充てる
     let ctrlCells = document.querySelectorAll("#overlay #control .btn");
-    ctrlCells.forEach((ctrlCell)=>{
-        if(ctrlCell.id == "right"){
-            ctrlCell.addEventListener('click', function(){
+    ctrlCells.forEach((ctrlCell) => {
+        if (ctrlCell.id == "right") {
+            ctrlCell.addEventListener('click', function () {
                 index++;
                 updateOverlay();
             });
         }
-        if(ctrlCell.id == "left"){
-            ctrlCell.addEventListener('click', function(){
+        if (ctrlCell.id == "left") {
+            ctrlCell.addEventListener('click', function () {
                 index--;
                 updateOverlay();
             });
@@ -104,7 +104,7 @@ function showOverlay() {
     updateOverlay();
 }
 //--オーバーレイ更新
-function updateOverlay(){
+function updateOverlay() {
     let image = overLay.querySelector("img");
     if (index < 0) {
         index = 0;
@@ -118,4 +118,5 @@ function updateOverlay(){
 //--オーバーレイを捨てる
 function discardOverlay() {
     overLay.setAttribute("data-status", "hide");
+    overLay.querySelector("#image img").src = "/APP_CEIS/images/loading.gif";
 }

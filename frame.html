@@ -41,6 +41,8 @@
         <input type="radio" name="menu" id="photos" checked>
         <input type="radio" name="menu" id="person">
         <input type="radio" name="menu" id="settings">
+        <!-- 隠しペイン ユーザ別画像一覧表示 -->
+        <input type="radio" name="menu" id="userimg">
 
         <!-- navペイン -->
         <div class="pane" id="menu">
@@ -56,56 +58,41 @@
         </div>
 
         <!-- 最新画像リストペイン -->
-        <div class="pane" id="list">
+        <div class="pane" id="list" data-id="">
             <!-- ズームボタン -->
             <div id="scalebtn">
                 <div class="btn" id="up">+</div>
                 <div class="btn" id="down">-</div>
             </div>
-            <!--
-            <span class="imgCell">
-                <img src="/kig/thumb_dummy.png" alt="">
-            </span>
-            -->
         </div>
 
-        <!-- ユーザ別画像リストペイン -->
+        <!-- ユーザリストペイン -->
         <div class="pane" id="user">
             <!-- ズームボタン -->
             <div id="scalebtn">
                 <div class="btn" id="up">+</div>
                 <div class="btn" id="down">-</div>
             </div>
-            <!--
-            <span class="userCell">
-                <span class="thumbCell">
-                    <img src="/kig/thumb_dummy.png" alt="">
-                    <img src="/kig/thumb_dummy.png" alt="">
-                    <img src="/kig/thumb_dummy.png" alt="">
-                    <img src="/kig/thumb_dummy.png" alt="">
-                </span>
-                <span class="nameCell">はれ</span>
-                <span class="idCell">
-                    <a href="https://twitter.com/hare_kig" target="_blank">(@hare_kig)</a>
-                </span>
-                <span class="infoCell">302</span>
-            </span>
-            -->
         </div>
 
         <!-- 設定ペイン -->
         <div id="config" class="pane">
 
         </div>
+
+        <!-- ユーザ別画像一覧ペイン -->
+        <div class="pane" id="userimages" data-userid="">
+
+        </div>
     </div>
 
     <!-- JS -->
-    <script src="/APP_CEIS/js/thumbnail.js"></script>
+    <script src="/APP_CEIS/js/script.js"></script>
     <script src="/APP_CEIS/js/overlay.js"></script>
+    <script src="/APP_CEIS/js/images.js"></script>
     <script src="/APP_CEIS/js/menu.js"></script>
     <script src="/APP_CEIS/js/zoom.js"></script>
-    <script src="/APP_CEIS/js/script.js"></script>
-
+    <script src="/APP_CEIS/js/userlist.js"></script>
 </body>
 
 </html>
