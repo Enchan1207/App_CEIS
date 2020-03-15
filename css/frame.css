@@ -51,6 +51,19 @@ div{
     font-style: italic;
     font-size: 2em;
 }
+#status{
+    width: 100%;
+    text-align: right;
+    padding-right: 50px;
+    line-height: 50px;
+    font-size: 1.5em;
+}
+#status.normal{
+    color:#eee;
+}
+#status.undervoltage{
+    color:#D95900;
+}
 
 /*-- オーバーレイ --*/
 #overlay{

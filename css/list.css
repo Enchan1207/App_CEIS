@@ -2,16 +2,13 @@
  * 画像パネルCSS
 */
 
-#list{
-    height:fit-content !important;
-    max-height: 100%;
-    overflow: auto;
-}
-
 .pane:not(#menu){
     display: none;
     overflow-y:auto;
     width:100%;
+    height:fit-content !important;
+    max-height: 100%;
+
     padding: 10px;
     padding-left: 20px;
     box-sizing: border-box;

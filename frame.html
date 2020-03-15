@@ -30,6 +30,9 @@
         <div id="logo">
             CEISManager
         </div>
+        <div id="status">
+            0℃
+        </div>
     </div>
 
     <!-- wrapper -->
@@ -59,20 +62,12 @@
 
         <!-- 最新画像リストペイン -->
         <div class="pane" id="list" data-count="0" data-limit="20" data-offset="0">
-            <!-- ズームボタン -->
-            <div id="scalebtn">
-                <div class="btn" id="up">+</div>
-                <div class="btn" id="down">-</div>
-            </div>
+
         </div>
 
         <!-- ユーザリストペイン -->
-        <div class="pane" id="user">
-            <!-- ズームボタン -->
-            <div id="scalebtn">
-                <div class="btn" id="up">+</div>
-                <div class="btn" id="down">-</div>
-            </div>
+        <div class="pane" id="user" data-count="0" data-limit="20" data-offset="0">
+
         </div>
 
         <!-- 設定ペイン -->
@@ -81,8 +76,15 @@
         </div>
 
         <!-- ユーザ別画像一覧ペイン -->
-        <div class="pane" id="userimages" data-userid="">
+        <div class="pane" id="userimages" data-userid="" data-limit="20" data-offset="0">
 
+
+        </div>
+
+        <!-- ズームボタン -->
+        <div id="scalebtn">
+            <div class="btn" id="up">+</div>
+            <div class="btn" id="down">-</div>
         </div>
     </div>
 
@@ -90,13 +92,24 @@
 
     <!-- 各ペイン共通 -->
     <script src="/APP_CEIS/js/common/consts.js"></script>
+    <script src="/APP_CEIS/js/common/events.js"></script>
     <script src="/APP_CEIS/js/common/overlay.js"></script>
+    <script src="/APP_CEIS/js/common/hoststat.js"></script>
     <script src="/APP_CEIS/js/common/menu.js"></script>
+    <script src="/APP_CEIS/js/common/zoom.js"></script>
     <script src="/APP_CEIS/js/common/script.js"></script>
-    
+
     <!-- 最新画像 -->
     <script src="/APP_CEIS/js/latest/images.js"></script>
     <script src="/APP_CEIS/js/latest/script.js"></script>
+
+    <!-- ユーザリスト -->
+    <script src="/APP_CEIS/js/userlist/userlist.js"></script>
+    <script src="/APP_CEIS/js/userlist/script.js"></script>
+
+    <!-- ユーザ別画像リスト -->
+    <script src="/APP_CEIS/js/userimage/userimage.js"></script>
+    <script src="/APP_CEIS/js/userimage/script.js"></script>
 </body>
 
 </html>

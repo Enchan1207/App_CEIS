@@ -4,19 +4,17 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     loadImages();
-    detectBottomScroll(); //最下端スクロールを検知してloadImagesする
-});
 
-//--下端スクロール検知
-function detectBottomScroll(){
+    //--listPaneの最下端に達したことを検知してloacImage
     const listPane = document.getElementById("list");
+    let loaded = false;
     listPane.addEventListener('scroll', () => {
         const rawHeight = listPane.scrollHeight;
         const position = Math.ceil(listPane.scrollTop); //なんかガバいので1足す
-        const elementHeight = listPane.clientHeight
+        const elementHeight = listPane.clientHeight;
 
         let isscrolled = (rawHeight - position - 1) <= elementHeight; //全体高-位置<=要素高なら下端
-        if (isscrolled) {
+        if (isscrolled && !loaded) {
             //--「さらに読み込む」ボタンを消す
             listPane.querySelectorAll(".imgCell").forEach(item=>{
                 if(item.querySelector("img").className == "loadmore"){
@@ -24,7 +22,11 @@ function detectBottomScroll(){
                 }
             });
             loadImages();
-            isscrolled = false;
+            loaded = true;
+        }
+
+        if(!isscrolled){
+            loaded = false;
         }
     });
-}
+});
