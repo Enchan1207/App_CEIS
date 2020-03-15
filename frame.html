@@ -15,7 +15,7 @@
 
 <body>
     <!-- 画像オーバーレイ -->
-    <div id="overlay" data-status="hide">
+    <div id="overlay" data-status="hide" data-index="0" data-srcs="/APP_CEIS/images/loading.gif">
         <div id="control">
             <div id="left" class="btn">&lt;</div>
             <div id="right" class="btn">&gt;</div>
@@ -58,7 +58,7 @@
         </div>
 
         <!-- 最新画像リストペイン -->
-        <div class="pane" id="list" data-id="">
+        <div class="pane" id="list" data-count="0" data-limit="20" data-offset="0">
             <!-- ズームボタン -->
             <div id="scalebtn">
                 <div class="btn" id="up">+</div>
@@ -87,12 +87,16 @@
     </div>
 
     <!-- JS -->
-    <script src="/APP_CEIS/js/script.js"></script>
-    <script src="/APP_CEIS/js/overlay.js"></script>
-    <script src="/APP_CEIS/js/images.js"></script>
-    <script src="/APP_CEIS/js/menu.js"></script>
-    <script src="/APP_CEIS/js/zoom.js"></script>
-    <script src="/APP_CEIS/js/userlist.js"></script>
+
+    <!-- 各ペイン共通 -->
+    <script src="/APP_CEIS/js/common/consts.js"></script>
+    <script src="/APP_CEIS/js/common/overlay.js"></script>
+    <script src="/APP_CEIS/js/common/menu.js"></script>
+    <script src="/APP_CEIS/js/common/script.js"></script>
+    
+    <!-- 最新画像 -->
+    <script src="/APP_CEIS/js/latest/images.js"></script>
+    <script src="/APP_CEIS/js/latest/script.js"></script>
 </body>
 
 </html>
