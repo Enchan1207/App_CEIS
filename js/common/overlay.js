@@ -5,18 +5,23 @@
 document.addEventListener('DOMContentLoaded', function () {
     //--オーバーレイ初期化
     const overLay = document.getElementById("overlay");
-    initOverlay();
+
+    //--コントロールボタンにイベントを充てる
+    const ctrlCells = document.querySelectorAll("#overlay #control .btn");
+    ctrlCells.forEach((ctrlCell) => {
+        ctrlCell.addEventListener('click', function (e) {
+            e.stopPropagation();
+            switchOverlay([1, -1][Number(ctrlCell.id == "left")]);
+        });
+    });
 
     //--範囲外クリックでオーバーレイ非表示
     let clicked = false;
     overLay.querySelector("#image").addEventListener('click', function () {
-        if (!clicked) {
-            discardOverlay();
-        }
-        clicked = false;
+        discardOverlay();
     });
-    overLay.querySelector("img").addEventListener('click', function () {
-        clicked = true;
+    overLay.querySelector("#image img").addEventListener('click', function (e) {
+        e.stopPropagation();
     });
 });
 
@@ -37,17 +42,6 @@ document.addEventListener('keydown', function (event) {
     }
     return;
 });
-
-//--オーバーレイ初期化
-function initOverlay() {
-    //--コントロールボタンにイベントを充てる
-    const ctrlCells = document.querySelectorAll("#overlay #control .btn");
-    ctrlCells.forEach((ctrlCell) => {
-        ctrlCell.addEventListener('click', function () {
-            switchOverlay([1, -1][Number(ctrlCell.id == "left")]);
-        });
-    });
-}
 
 //--オーバーレイ表示
 function showOverlay(at = -1, srcs = "") {
@@ -91,7 +85,7 @@ function updateOverlay() {
     const overLay = document.getElementById("overlay");
     const srcs = overLay.getAttribute("data-srcs").split(",");
     const index = Number(overLay.getAttribute("data-index"));
-    
+
     //--imageにindex番目の画像を当てる
     const image = overLay.querySelector("img");
     image.src = srcs[index].replace("thumb_", "");
