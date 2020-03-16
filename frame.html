@@ -62,12 +62,13 @@
 
         <!-- 最新画像リストペイン -->
         <div class="pane" id="list" data-count="0" data-limit="20" data-offset="0">
+            <input type="checkbox" class="onlyfav">
 
         </div>
 
         <!-- ユーザリストペイン -->
         <div class="pane" id="user" data-count="0" data-limit="20" data-offset="0">
-
+            <input type="checkbox" class="onlyfav">
         </div>
 
         <!-- 設定ペイン -->
@@ -77,12 +78,13 @@
 
         <!-- ユーザ別画像一覧ペイン -->
         <div class="pane" id="userimages" data-userid="" data-limit="20" data-offset="0">
-
+            <input type="checkbox" class="onlyfav">
 
         </div>
 
-        <!-- ズームボタン -->
+        <!-- 諸ボタン -->
         <div id="scalebtn">
+            <div class="btn" id="fav" data-checked="0">🤍</div>
             <div class="btn" id="up">+</div>
             <div class="btn" id="down">-</div>
         </div>
@@ -95,6 +97,7 @@
     <script src="/APP_CEIS/js/common/events.js"></script>
     <script src="/APP_CEIS/js/common/overlay.js"></script>
     <script src="/APP_CEIS/js/common/hoststat.js"></script>
+    <script src="/APP_CEIS/js/common/onlyfav.js"></script>
     <script src="/APP_CEIS/js/common/menu.js"></script>
     <script src="/APP_CEIS/js/common/zoom.js"></script>
     <script src="/APP_CEIS/js/common/script.js"></script>

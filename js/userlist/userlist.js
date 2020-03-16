@@ -72,6 +72,7 @@ function createUserCell(id, userid, twitterid, accountname) {
     userCell.className = "userCell";
     userCell.setAttribute("data-checked", 0); //後でサムネイルやらなんやらを更新する時のためのフラグ
     userCell.setAttribute("data-userid", userid);
+    userCell.setAttribute("data-empty", 0);
     let thumbCell = document.createElement("span");
     thumbCell.className = "thumbCell";
     let nameCell = document.createElement("span");
@@ -117,6 +118,9 @@ async function updateUserInfo(userCell) {
         let percent = (Math.round((imgInfo.saved / imgInfo.target) * 10) / 10 * 100);
         if (isNaN(percent)) {
             percent = 0;
+        }
+        if(percent == 0){
+            userCell.setAttribute("data-empty", 1);
         }
         let content = imgInfo.saved + "(" + percent + "%)";
         infoCell.innerHTML = content;

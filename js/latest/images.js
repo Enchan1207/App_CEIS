@@ -36,6 +36,7 @@ async function loadImages() {
         favBtn.className = "fav";
         favBtn.setAttribute("data-faved", image.faved);
         imgCell.setAttribute("data-faved", image.faved); //CSSがhasセレクタを持たないのでimgCellにも書く
+        imgCell.setAttribute("data-userid", image.userID);
         favBtn.setAttribute("data-path", image.url.replace("/kig/", ""));
         imgCell.appendChild(img);
         imgCell.appendChild(favBtn);
