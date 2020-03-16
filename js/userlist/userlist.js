@@ -3,7 +3,7 @@
 */
 
 //--APIを叩き、ユーザリストを取得してセルを追加
-function loadUser() {
+async function loadUser() {
     //--ペインとlimitとoffsetを取得
     const listPane = document.getElementById("user");
     const limit = Number(listPane.getAttribute("data-limit"));
@@ -12,55 +12,57 @@ function loadUser() {
 
     //--APIを叩く
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener("load", function () {
-        const response = JSON.parse(this.responseText);
-        const code = this.status;
-        const users = response.users;
-
-        //--
-        if (code != 200 || response.status != 0) {
-            return;
-        }
-
-        //--userCellを配置
-        users.forEach(user => {
-            const userCell = createUserCell(user.id, user.userID, user.TwitterID, user.AccountName);
-            //--クリック時隠しpaneを必要に応じて再構成し切り替える
-            userCell.addEventListener('click', function () {
-                //userIDを渡したカスタムイベントを叩きつける
-                this.dispatchEvent(UIPChangeEvent);
-            });
-            listPane.appendChild(userCell);
-        });
-
-        //--status==0 && length!=0 →さらに読み込むボタンを追加
-        if (users.length != 0) {
-            const loadMore = document.createElement("span");
-            loadMore.className = "userCell";
-            loadMore.setAttribute("data-checked", 1); //こいつはupdateUserInfoから外す
-            const navImg = document.createElement("img");
-            navImg.className = "loadmore";
-            navImg.src = "/APP_CEIS/images/loadmore.png";
-            loadMore.appendChild(navImg);
-            listPane.appendChild(loadMore);
-            loadMore.addEventListener('click', function () {
-                loadUser();
-                listPane.removeChild(this);
-            });
-        }
-
-        //--追加処理が終わったタイミングでupdateUserInfo
-        const intvId = setInterval(() => {
-            const target = listPane.querySelector(".userCell[data-checked=\"0\"]");
-            if (target != null) {
-                updateUserInfo(target);
-            } else {
-                clearInterval(intvId);
-            }
-        }, 200);
-    });
     xhr.open("GET", "/API_CEIS/userlist.php?limit=" + limit + "&offset=" + offset);
     xhr.send();
+    await awaitForLoad(xhr, "load");
+
+    const response = JSON.parse(xhr.responseText);
+    const code = xhr.status;
+    const users = response.users;
+
+    //--
+    if (code != 200 || response.status != 0) {
+        return;
+    }
+
+    //--userCellを配置
+    users.forEach(user => {
+        const userCell = createUserCell(user.id, user.userID, user.TwitterID, user.AccountName);
+        //--クリック時隠しpaneを必要に応じて再構成し切り替える
+        userCell.addEventListener('click', function () {
+            //userIDを渡したカスタムイベントを叩きつける
+            this.dispatchEvent(UIPChangeEvent);
+        });
+        listPane.appendChild(userCell);
+    });
+
+    //--status==0 && length!=0 →さらに読み込むボタンを追加
+    if (users.length != 0) {
+        const loadMore = document.createElement("span");
+        loadMore.className = "userCell";
+        loadMore.setAttribute("data-checked", 1); //こいつはupdateUserInfoから外す
+        const navImg = document.createElement("img");
+        navImg.className = "loadmore";
+        navImg.src = "/APP_CEIS/images/loadmore.png";
+        loadMore.appendChild(navImg);
+        listPane.appendChild(loadMore);
+        loadMore.addEventListener('click', function () {
+            loadMore.querySelector("img").src="/APP_CEIS/images/loading.gif";
+            loadUser().then(function(){
+                listPane.removeChild(loadMore);
+            });
+        });
+    }
+
+    //--追加処理が終わったタイミングでupdateUserInfo
+    const intvId = setInterval(() => {
+        const target = listPane.querySelector(".userCell[data-checked=\"0\"]");
+        if (target != null) {
+            updateUserInfo(target);
+        } else {
+            clearInterval(intvId);
+        }
+    }, 200);
 }
 
 //--userCellを作る
@@ -94,7 +96,7 @@ function createUserCell(id, userid, twitterid, accountname) {
 }
 
 //--ユーザの画像保存情報を取得、設定
-function updateUserInfo(userCell) {
+async function updateUserInfo(userCell) {
     userCell.setAttribute("data-checked", 1);
 
     //--保存画像枚数

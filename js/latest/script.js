@@ -5,7 +5,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     loadImages();
 
-    //--listPaneの最下端に達したことを検知してloacImage
+    //--listPaneの最下端に達したことを検知してloadImage
     const listPane = document.getElementById("list");
     let loaded = false;
     listPane.addEventListener('scroll', () => {
@@ -21,7 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     listPane.removeChild(item);
                 }
             });
-            loadImages();
+            loadImages().then(function(){
+                
+            });
             loaded = true;
         }
 

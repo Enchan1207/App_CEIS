@@ -38,7 +38,9 @@ document.addEventListener('onUserImgpaneChange', function (event) {
     if (preUID != targetID) {
         uimgPane.setAttribute("data-offset", 0);
         uimgPane.setAttribute("data-count", 0);
-        uimgPane.innerHTML = "";
+        uimgPane.querySelectorAll(".imgCell").forEach((item)=>{
+            uimgPane.removeChild(item);
+        })
     }
 
     loadUserImages(targetID);
