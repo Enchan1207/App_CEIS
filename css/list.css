@@ -15,6 +15,7 @@
 }
 .imgCell{
     display: inline-block;
+    position: relative;
     margin: 3px;
 }
 .imgCell,
@@ -34,6 +35,22 @@
     width:100%;
     height:100%;
     object-fit: contain;
+}
+
+.imgCell .fav{
+    position: absolute;
+    bottom: 3px;
+    right:3px;
+    font-size: 1.3em;
+}
+.imgCell .fav::before{
+    content: '🤍';
+}
+.imgCell .fav:hover::before{
+    content: '💛';
+}
+.imgCell .fav[data-faved="1"]::before{
+    content: '🧡';
 }
 
 #scalebtn{

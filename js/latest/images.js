@@ -26,7 +26,12 @@ function loadImages() {
         images.forEach(image => {
             const imgCell = document.createElement("span");
             const img = document.createElement("img");
+            const favBtn = document.createElement("span");
+            favBtn.className = "fav";
+            favBtn.setAttribute("data-faved", image.faved);
+            favBtn.setAttribute("data-path", image.url.replace("/kig/", ""));
             imgCell.appendChild(img);
+            imgCell.appendChild(favBtn);
             imgCell.className = "imgCell";
             img.src = image.thumburl;
             imgPane.appendChild(imgCell);
@@ -49,6 +54,9 @@ function loadImages() {
         }
     });
     xhr.open("GET", "/API_CEIS/getimages.php?id=&mode=2&limit=" + limit + "&offset=" + offset);
+    xhr.setRequestHeader('Pragma', 'no-cache');
+    xhr.setRequestHeader('Cache-Control', 'no-cache');
+    xhr.setRequestHeader('If-Modified-Since', 'Thu, 01 Jun 1970 00:00:00 GMT');
     xhr.send();
 }
 
@@ -80,5 +88,19 @@ function initImageCell(imgCell) {
         });
         const srcs = srcArray.join(",");
         showOverlay(index, srcs);
+    });
+
+    //--favボタンをクリックしたらfavる
+    imgCell.querySelector(".fav").addEventListener('click', function (e) {
+        e.stopPropagation();
+        //--attrに設定
+        const isFaved = Number(this.getAttribute("data-faved"));
+        this.setAttribute("data-faved", Number(!isFaved));
+
+        //--xhrで送り付ける
+        const path = this.getAttribute("data-path");
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "/API_CEIS/setFavorite.php?faved=" + Number(!isFaved) + "&path=" + path);
+        xhr.send();
     });
 }

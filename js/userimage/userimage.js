@@ -32,7 +32,7 @@ function loadUserImages(userID) {
             imgCell.className = "imgCell";
             img.src = image.thumburl;
             uimgPane.appendChild(imgCell);
-            initImageCell(imgCell);
+            initUserImageCell(imgCell);
         });
 
         //--status==0 && length!=0 →さらに読み込むボタンを追加
@@ -55,7 +55,7 @@ function loadUserImages(userID) {
 }
 
 //--imgCellを初期化
-function initImageCell(imgCell) {
+function initUserImageCell(imgCell) {
     //--次に振るべきIDを計算する
     const id = Number(imgCell.parentElement.getAttribute("data-count")) + 1;
     imgCell.parentElement.setAttribute("data-count", id);
