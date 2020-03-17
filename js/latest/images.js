@@ -33,6 +33,11 @@ async function loadImages() {
         const imgCell = document.createElement("span");
         const img = document.createElement("img");
         const favBtn = document.createElement("span");
+        const usrBtn = document.createElement("span");
+        const usrImg = document.createElement("img");
+        usrImg.src = "/APP_CEIS/images/person.png";
+        usrBtn.className = "usr";
+        usrBtn.setAttribute("data-userid", image.userID);
         favBtn.className = "fav";
         favBtn.setAttribute("data-faved", image.faved);
         imgCell.setAttribute("data-faved", image.faved); //CSSがhasセレクタを持たないのでimgCellにも書く
@@ -40,6 +45,13 @@ async function loadImages() {
         favBtn.setAttribute("data-path", image.url.replace("/kig/", ""));
         imgCell.appendChild(img);
         imgCell.appendChild(favBtn);
+        usrBtn.appendChild(usrImg);
+        imgCell.appendChild(usrBtn);
+        usrBtn.addEventListener('click', function (event) {
+            event.stopPropagation();
+            this.dispatchEvent(UIPChangeEvent);
+        });
+
         imgCell.className = "imgCell";
         img.src = image.thumburl;
         imgPane.appendChild(imgCell);

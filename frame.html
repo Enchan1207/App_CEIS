@@ -19,6 +19,7 @@
         <div id="control">
             <div id="left" class="btn">&lt;</div>
             <div id="right" class="btn">&gt;</div>
+            <div id="close" class="btn" onclick="discardOverlay();">×</div>
         </div>
         <div id="image">
             <img src="/APP_CEIS/images/loading.gif">
@@ -79,7 +80,7 @@
         <!-- ユーザ別画像一覧ペイン -->
         <div class="pane" id="userimages" data-userid="" data-limit="20" data-offset="0">
             <input type="checkbox" class="onlyfav">
-
+            <span id="userinfo" data-loaded="0"></span>
         </div>
 
         <!-- 諸ボタン -->
@@ -112,6 +113,7 @@
 
     <!-- ユーザ別画像リスト -->
     <script src="/APP_CEIS/js/userimage/userimage.js"></script>
+    <script src="/APP_CEIS/js/userimage/getinfo.js"></script>
     <script src="/APP_CEIS/js/userimage/script.js"></script>
 </body>
 

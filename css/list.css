@@ -52,6 +52,17 @@
 .imgCell .fav[data-faved="1"]::before{
     content: '🧡';
 }
+.imgCell .usr{
+    filter: grayscale(1);
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 27px;
+    height: 27px;
+}
+.imgCell .usr:hover{
+    filter: none;
+}
 
 #scalebtn{
     position: absolute;
@@ -96,4 +107,22 @@
 .onlyfav:checked ~ .userCell[data-empty="1"]
 {
     display: none;
+}
+
+#userinfo{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    font-size: 1.1em;
+    color: #333;
+    transition: .3s all ease-in-out;
+}
+#userinfo[data-loaded="0"]{
+    transform: translateY(-50px);
+}
+#userinfo a::before{
+    content: '(';
+}
+#userinfo a::after{
+    content: ')';
 }

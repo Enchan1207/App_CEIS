@@ -40,10 +40,11 @@ document.addEventListener('onUserImgpaneChange', function (event) {
         uimgPane.setAttribute("data-count", 0);
         uimgPane.querySelectorAll(".imgCell").forEach((item)=>{
             uimgPane.removeChild(item);
-        })
+        });
     }
 
     loadUserImages(targetID);
+    getinfo(targetID);
 
     document.getElementById("userimg").checked = true;
 });
